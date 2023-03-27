@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Reflection.Emit;
 using Android.Content;
@@ -6,6 +7,7 @@ using Android.Graphics;
 using Android.Views;
 using Android.Widget;
 using Wallet.Mobile.Models;
+using Xamarin.Essentials;
 
 namespace Wallet.Mobile.Adapters
 {
@@ -41,6 +43,9 @@ namespace Wallet.Mobile.Adapters
             if (satir == null)
                 satir = LayoutInflater.From(_context).Inflate(Resource.Layout.campaign_row, null, false);
 
+            TextView txtBrand = satir.FindViewById<TextView>(Resource.Id.txtBrand);
+            txtBrand.Text = _liste[position].Brand;
+
             TextView txtTitle = satir.FindViewById<TextView>(Resource.Id.txtTitle);
             txtTitle.Text = _liste[position].Title;
 
@@ -49,6 +54,18 @@ namespace Wallet.Mobile.Adapters
 
             if (imageBitmap != null)
                 imageView.SetImageBitmap(imageBitmap);
+
+            Button btnDetail = satir.FindViewById<Button>(Resource.Id.btnDetail);
+
+            btnDetail.Click += (sender, args) =>
+            {
+                Uri uri = new Uri(_liste[position].DetailUrl);
+                Browser.OpenAsync(uri, new BrowserLaunchOptions
+                {
+                    LaunchMode = BrowserLaunchMode.SystemPreferred,
+                    TitleMode = BrowserTitleMode.Show
+                });
+            };
 
             return satir;
         }

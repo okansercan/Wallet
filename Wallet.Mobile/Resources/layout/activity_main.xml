@@ -3,13 +3,23 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+	<ImageButton
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/btnSpeak"
+		android:src="@drawable/microphone"
+		android:contentDescription="@string/speak_prompt" />
     <Spinner
-        android:layout_width="fill_parent"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:prompt="@string/brand_prompt"
         android:spinnerMode="dialog"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/spnBrand"/>
+    </GridLayout>
     <Spinner
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
