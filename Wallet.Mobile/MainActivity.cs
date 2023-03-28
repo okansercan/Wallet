@@ -215,11 +215,13 @@ namespace Wallet.Mobile
             {
                 if (campaigns.Count > 0)
                 {
-                    campaigns = campaigns.Where(c => c.Sector.ToUpper().Contains(campaign.ToUpper())).ToList();
+                    campaigns = campaigns.Where(c => c.Sector.ToUpper().Contains(campaign.ToUpper())
+                    || c.Title.ToUpper().Contains(campaign.ToUpper())).ToList();
                 }
                 else
                 {
-                    campaigns = campaignData.Where(c => c.Sector.ToUpper().Equals(campaign.ToUpper())).ToList();
+                    campaigns = campaignData.Where(c => c.Sector.ToUpper().Equals(campaign.ToUpper())
+                    || c.Title.ToUpper().Contains(campaign.ToUpper())).ToList();
                 }
             }
 
