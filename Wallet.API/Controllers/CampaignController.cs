@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
+using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -154,6 +156,7 @@ namespace Wallet.API.Controllers
 
         private static IEnumerable<Campaign> GetBonusCampaigns()
         {
+            List<Sector> catlist = new List<Sector>();
             List<Campaign> cmplist = new List<Campaign>();
             string bankUrl = string.Format("{0}/kampanyalar", BonusUrl);
 
@@ -163,6 +166,25 @@ namespace Wallet.API.Controllers
 
             var cmpNodes = htmlDoc.DocumentNode.SelectNodes("//div[@data-sector]");
 
+            string ClassToGet = "campaign-filter__select campaign-filter__select--sector";
+            var catSelect = htmlDoc.DocumentNode.SelectSingleNode("//select[@class='" + ClassToGet + "']");
+
+            //kampanya sektorleri aliniyor
+            foreach (var catNode in catSelect.ChildNodes.Where(c => c.Name == "option"))
+            {
+                var catId = catNode.Attributes["value"].Value;
+                var catName = catNode.InnerText;
+
+                if (!catId.Equals("-1"))
+                {
+                    catlist.Add(new Sector
+                    {
+                        Id = catId.Replace("/sektor/",""),
+                        Name = catName
+                    });
+                }
+            }
+
             foreach (HtmlNode node in cmpNodes)
             {
                 var cmpContent = node.OuterHtml;
@@ -170,11 +192,15 @@ namespace Wallet.API.Controllers
                 cmpDoc.LoadHtml(cmpContent);
 
                 string title = node.Attributes["data-text"].Value;
-                string sector = node.Attributes["data-sector"].Value;
+                string sector = string.Empty;
                 string url = node.ChildNodes.FirstOrDefault(c => c.Name == "a" && c.OuterHtml.Contains("href")).Attributes["href"].Value;
                 url = string.Format("{0}{1}", BonusUrl, url);
                 string imageUrl = cmpDoc.DocumentNode.SelectSingleNode("//div").SelectSingleNode("//img").Attributes["data-src"].Value;
                 imageUrl = string.Format("{0}{1}", BonusUrl, imageUrl);
+                var category = catlist.FirstOrDefault(c => node.Attributes["data-sector"].Value.Contains(c.Id));
+
+                if (category != null)
+                    sector = category.Name;
 
                 cmplist.Add(new Campaign { Brand = "Bonus", Sector = sector, Title = title, ImageUrl = imageUrl, DetailUrl = url });
             }
