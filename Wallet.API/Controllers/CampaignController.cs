@@ -28,8 +28,6 @@ namespace Wallet.API.Controllers
         [HttpGet]
         public IEnumerable<Campaign> Get()
         {
-            connString = "Server=tcp:twinsoft.database.windows.net,1433;Initial Catalog=nova;Persist Security Info=False;User ID=twsa;Password=Twinbr0s;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-
             List<Campaign> campaigns = new List<Campaign>();
 
             using (var connection = new SqlConnection(connString))
