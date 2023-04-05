@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,11 +16,14 @@ namespace Wallet.API.Controllers
     [Route("api/[controller]")]
     public class CampaignController : Controller
     {
-        private static readonly string BonusUrl = "https://www.bonus.com.tr";
-        private static readonly string WorldUrl = "https://www.worldcard.com.tr";
-        private static readonly string MaximumUrl = "https://www.maximum.com.tr";
         private string connString = string.Empty;
+        public readonly IConfiguration config;
 
+        public CampaignController(IConfiguration configuration)
+        {
+            config = configuration;
+            connString = config["ConnectionStrings:DefaultConnection"];
+        }
         // GET: api/campaign
         [HttpGet]
         public IEnumerable<Campaign> Get()
@@ -47,6 +51,7 @@ namespace Wallet.API.Controllers
                         Logo = reader["Logo"].ToString()
                     });
                 }
+                connection.Close();
             }
 
             return campaigns;
