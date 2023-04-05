@@ -12,9 +12,9 @@ namespace Wallet.Batch
         private static readonly string WorldUrl = "https://www.worldcard.com.tr";
         private static readonly string MaximumUrl = "https://www.maximum.com.tr";
 
-        public CampaignLoader()
+        public CampaignLoader(string connectionString)
 		{
-            connString = "Server=tcp:twinsoft.database.windows.net,1433;Initial Catalog=nova;Persist Security Info=False;User ID=twsa;Password=Twinbr0s;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            connString = connectionString;
 		}
 
         public void Load()
@@ -51,6 +51,8 @@ namespace Wallet.Batch
 
                     command.ExecuteNonQuery();
                 }
+
+                connection.Close();
             }
         }
 
