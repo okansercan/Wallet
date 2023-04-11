@@ -62,11 +62,22 @@
 
 	<ItemGroup>
 	  <None Remove="ViewModel\" />
+	  <None Remove="Resources\Images\microphone-342-2.png" />
+	  <None Remove="Resources\Images\microphone-342.svg" />
+	  <None Remove="Resources\Images\microphone-342.png" />
+	  <None Remove="Resources\Images\microphone-342-3.png" />
+	  <None Remove="Resources\Images\favorite.png" />
+	  <None Remove="Resources\Images\delete.png" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="ViewModel\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
+	</ItemGroup>
+	<ItemGroup>
+	  <BundleResource Include="Resources\Images\microphone.png" />
+	  <BundleResource Include="Resources\Images\favorite.png" />
+	  <BundleResource Include="Resources\Images\delete.png" />
 	</ItemGroup>
 </Project>
