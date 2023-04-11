@@ -12,7 +12,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 
 		<!-- Display name -->
-		<ApplicationTitle>Wallet.MAUI</ApplicationTitle>
+		<ApplicationTitle>Kampanya Bulucu</ApplicationTitle>
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.wallet.maui</ApplicationId>
