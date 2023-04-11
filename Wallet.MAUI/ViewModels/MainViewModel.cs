@@ -14,12 +14,20 @@ public partial class MainViewModel : ObservableObject
     public MainViewModel()
     {
         Campaigns = new ObservableCollection<Campaign>();
+        Brands = new ObservableCollection<string>();
+        Sectors = new ObservableCollection<string>();
         source = new List<Campaign>();
         GetCampaignCollection();
     }
 
     [ObservableProperty]
     ObservableCollection<Campaign> campaigns;
+
+    [ObservableProperty]
+    ObservableCollection<string> brands;
+
+    [ObservableProperty]
+    ObservableCollection<string> sectors;
 
     [ObservableProperty]
     string text;
@@ -61,6 +69,11 @@ public partial class MainViewModel : ObservableObject
     {
         ICampaignService service = new CampaignService();
         source = await service.GetCampaignsAsync();
+
+        foreach(string brand in source.Select(campaign => campaign.Brand).Distinct().ToList())
+        {
+            Brands.Add(brand);
+        }
     }
 }
 

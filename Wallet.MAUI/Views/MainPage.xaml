@@ -27,31 +27,15 @@
 
         <Picker x:Name="brand"
                 Title="Marka seçiniz"
+                ItemsSource="{Binding Brands}"
                 Grid.Row="1"
-                Grid.ColumnSpan="3">
-          <Picker.ItemsSource>
-            <x:Array Type="{x:Type x:String}">
-              <x:String>Axess</x:String>
-              <x:String>Bonus</x:String>
-              <x:String>World</x:String>
-              <x:String>Maximum</x:String>
-            </x:Array>
-          </Picker.ItemsSource>
-        </Picker>
+                Grid.ColumnSpan="3" />
 
         <Picker x:Name="sector"
                 Title="Kategori seçiniz"
+                ItemsSource="{Binding Sectors}"
                 Grid.Row="2"
-                Grid.ColumnSpan="3">
-          <Picker.ItemsSource>
-            <x:Array Type="{x:Type x:String}">
-              <x:String>Akaryakıt</x:String>
-              <x:String>Beyaz Eşya</x:String>
-              <x:String>Market</x:String>
-              <x:String>Seyahat-Turizm</x:String>
-            </x:Array>
-          </Picker.ItemsSource>
-        </Picker>
+                Grid.ColumnSpan="3" />
 
         <CollectionView Grid.Row="3" Grid.ColumnSpan="3"
                         ItemsSource="{Binding Campaigns}"> 
