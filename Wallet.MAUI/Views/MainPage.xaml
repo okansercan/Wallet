@@ -66,7 +66,7 @@
                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=FavoriteCommand}"
                                            CommandParameter="{Binding .}" />
                                 <SwipeItem Text="Navigate"
-                                           IconImageSource="delete.png"
+                                           IconImageSource="link.png"
                                            BackgroundColor="LightPink"
                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=NavigateCommand}"
                                            CommandParameter="{Binding .}" />

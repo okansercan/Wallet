@@ -69,6 +69,8 @@
 	  <None Remove="Resources\Images\delete.png" />
 	  <None Remove="Services\" />
 	  <None Remove="Views\" />
+	  <None Remove="Resources\Images\link.png" />
+	  <None Remove="Resources\Images\discount.svg" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="ViewModels\" />
@@ -83,5 +85,7 @@
 	  <BundleResource Include="Resources\Images\microphone.png" />
 	  <BundleResource Include="Resources\Images\favorite.png" />
 	  <BundleResource Include="Resources\Images\delete.png" />
+	  <BundleResource Include="Resources\Images\link.png" />
+	  <BundleResource Include="Resources\Images\discount.svg" />
 	</ItemGroup>
 </Project>
