@@ -75,7 +75,8 @@
                         <Grid RowDefinitions="Auto, Auto, Auto"
                               ColumnDefinitions=".50*, .50*"
                               Padding="5">
-                            <Label Text="{Binding Brand}" />
+                            <Label Text="{Binding Brand}"
+                                   FontAttributes="Bold"/>
                             <Label Grid.Column="1"
                                    Text="{Binding LastDate}" />
                             <Image Source="{Binding ImageUrl}"
