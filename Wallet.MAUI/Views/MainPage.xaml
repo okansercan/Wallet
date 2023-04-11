@@ -28,12 +28,14 @@
         <Picker x:Name="brand"
                 Title="Marka seçiniz"
                 ItemsSource="{Binding Brands}"
+                SelectedIndex="{Binding BrandIndex}"
                 Grid.Row="1"
                 Grid.ColumnSpan="3" />
 
         <Picker x:Name="sector"
                 Title="Kategori seçiniz"
                 ItemsSource="{Binding Sectors}"
+                SelectedIndex="{Binding SectorIndex}"
                 Grid.Row="2"
                 Grid.ColumnSpan="3" />
 

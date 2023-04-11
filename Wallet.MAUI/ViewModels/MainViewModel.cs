@@ -27,10 +27,32 @@ public partial class MainViewModel : ObservableObject
     ObservableCollection<string> brands;
 
     [ObservableProperty]
+    private int brandIndex = -1;
+
+    [ObservableProperty]
     ObservableCollection<string> sectors;
 
     [ObservableProperty]
+    private int sectorIndex = -1;
+
+    [ObservableProperty]
     string text;
+
+    partial void OnBrandIndexChanged(int value) {
+        if (value == -1)
+            return;
+
+        GetBrandSectors(value);
+        GetBrandCampaigns(value);
+    }
+
+    partial void OnSectorIndexChanged(int value)
+    {
+        if (value == -1)
+            return;
+
+        GetSectorCampaigns(value);
+    }
 
     [RelayCommand]
     void Filter()
@@ -70,9 +92,46 @@ public partial class MainViewModel : ObservableObject
         ICampaignService service = new CampaignService();
         source = await service.GetCampaignsAsync();
 
-        foreach(string brand in source.Select(campaign => campaign.Brand).Distinct().ToList())
+        foreach(string brand in source.Select(campaign => campaign.Brand).Distinct())
         {
             Brands.Add(brand);
+        }
+    }
+
+    private void GetBrandSectors(int brandIndex)
+    {
+        string brandName = Brands.ElementAt<string>(brandIndex);
+        Sectors.Clear();
+        foreach (var sector in source.Where(c => c.Brand == brandName).Select(s => s.Sector).Distinct())
+        {
+            Sectors.Add(sector);
+        }
+    }
+
+    private void GetBrandCampaigns(int brandIndex)
+    {
+        string brandName = Brands.ElementAt<string>(brandIndex);
+
+        var filteredItems = source.Where(campaign => campaign.Brand == brandName).ToList();
+
+        Campaigns.Clear();
+        foreach (var campaign in filteredItems)
+        {
+            Campaigns.Add(campaign);
+        }
+    }
+
+    private void GetSectorCampaigns(int sectorIndex)
+    {
+        string brandName = Brands.ElementAt<string>(BrandIndex);
+        string sectorName = Sectors.ElementAt<string>(sectorIndex);
+
+        var filteredItems = source.Where(campaign => campaign.Brand == brandName && campaign.Sector == sectorName).ToList();
+
+        Campaigns.Clear();
+        foreach (var campaign in filteredItems)
+        {
+            Campaigns.Add(campaign);
         }
     }
 }
