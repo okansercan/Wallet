@@ -44,14 +44,18 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="viewmodel:Campaign">
                     <SwipeView>
-                        <SwipeView.RightItems>
+                        <SwipeView.LeftItems>
                             <SwipeItems>
-                                <SwipeItem Text="Favorite"
+                                <SwipeItem Text="Favori"
                                            IconImageSource="favorite.png"
                                            BackgroundColor="LightGreen"
                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=FavoriteCommand}"
                                            CommandParameter="{Binding .}" />
-                                <SwipeItem Text="Navigate"
+                            </SwipeItems>
+                        </SwipeView.LeftItems>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Detay"
                                            IconImageSource="link.png"
                                            BackgroundColor="LightPink"
                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=NavigateCommand}"
