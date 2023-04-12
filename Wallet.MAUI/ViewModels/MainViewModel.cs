@@ -44,6 +44,7 @@ public partial class MainViewModel : ObservableObject
 
         GetBrandSectors(value);
         GetBrandCampaigns(value);
+        Text = string.Empty;
     }
 
     partial void OnSectorIndexChanged(int value)
@@ -67,6 +68,9 @@ public partial class MainViewModel : ObservableObject
         {
             Campaigns.Add(campaign);
         }
+
+        BrandIndex = -1;
+        SectorIndex = -1;
     }
 
     [RelayCommand]
