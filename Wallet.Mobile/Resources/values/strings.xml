@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">Kampanya Buldum</string>
-    <string name="brand_prompt">Marka seçiniz</string>
-    <string name="sector_prompt">Kategori seçiniz</string>
-    <string name="detail_prompt">Detay için tıklayın</string>
-    <string name="speak_prompt">Sesli arama için tıklayın</string>
-</resources>
