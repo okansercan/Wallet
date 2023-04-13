@@ -76,7 +76,7 @@ public partial class MainViewModel : ObservableObject
     [RelayCommand]
     void VoiceFilter()
     {
-        return;
+        ProcessSpeech();
     }
 
     [RelayCommand]
@@ -137,6 +137,26 @@ public partial class MainViewModel : ObservableObject
         {
             Campaigns.Add(campaign);
         }
+    }
+
+    private async void ProcessSpeech()
+    {
+        SpeechService speechService = new SpeechService();
+        string speechText = await speechService.ProcessSpeech();
+
+        if (string.IsNullOrWhiteSpace(speechText))
+            return;
+
+        var filteredItems = source.Where(campaign => campaign.Title.ToLower().Contains(speechText.ToLower())).ToList();
+
+        Campaigns.Clear();
+        foreach (var campaign in filteredItems)
+        {
+            Campaigns.Add(campaign);
+        }
+
+        BrandIndex = -1;
+        SectorIndex = -1;
     }
 }
 

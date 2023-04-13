@@ -70,7 +70,6 @@
 	  <None Remove="Services\" />
 	  <None Remove="Views\" />
 	  <None Remove="Resources\Images\link.png" />
-	  <None Remove="Resources\Images\discount.svg" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="ViewModels\" />
@@ -80,12 +79,13 @@
 	<ItemGroup>
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
 	  <PackageReference Include="System.Net.Http" Version="4.3.4" />
+	  <PackageReference Include="Microsoft.CognitiveServices.Speech" Version="1.27.0" />
+	  <PackageReference Include="Azure.AI.Language.Conversations" Version="1.0.0" />
 	</ItemGroup>
 	<ItemGroup>
 	  <BundleResource Include="Resources\Images\microphone.png" />
 	  <BundleResource Include="Resources\Images\favorite.png" />
 	  <BundleResource Include="Resources\Images\delete.png" />
 	  <BundleResource Include="Resources\Images\link.png" />
-	  <BundleResource Include="Resources\Images\discount.svg" />
 	</ItemGroup>
 </Project>
