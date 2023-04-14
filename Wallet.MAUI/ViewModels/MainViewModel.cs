@@ -88,7 +88,7 @@ public partial class MainViewModel : ObservableObject
     [RelayCommand]
     void Navigate(Campaign campaign)
     {
-        return;
+        Browser.Default.OpenAsync(campaign.DetailUrl);
     }
 
     private async void GetCampaignCollection()

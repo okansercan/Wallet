@@ -10,5 +10,6 @@ public class Campaign
     public string ImageUrl { get; set; }
     public string DetailUrl { get; set; }
     public string Logo { get; set; }
+    public bool IsFavorite { get; set; }
 }
 
