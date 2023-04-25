@@ -61,7 +61,8 @@ public partial class MainViewModel : ObservableObject
         if (string.IsNullOrWhiteSpace(Text))
             return;
 
-        var filteredItems = source.Where(campaign => campaign.Title.ToLower().Contains(Text.ToLower())).ToList();
+        var filteredItems = source.Where(campaign => campaign.Title.ToLower().Contains(Text.ToLower())
+                                        || campaign.Sector.ToLower().Contains(Text.ToLower())).ToList();
 
         Campaigns.Clear();
         foreach (var campaign in filteredItems)
@@ -147,7 +148,8 @@ public partial class MainViewModel : ObservableObject
         if (string.IsNullOrWhiteSpace(speechText))
             return;
 
-        var filteredItems = source.Where(campaign => campaign.Title.ToLower().Contains(speechText.ToLower())).ToList();
+        var filteredItems = source.Where(campaign => campaign.Title.ToLower().Contains(speechText.ToLower())
+                                        || campaign.Sector.ToLower().Contains(speechText.ToLower())).ToList();
 
         Campaigns.Clear();
         foreach (var campaign in filteredItems)
